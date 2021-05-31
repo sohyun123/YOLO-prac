@@ -84,15 +84,16 @@ for output in outputs:
             confidences.append(float(confidence))
             classIDs.append(classID)
 
-# 비슷한 boundary에 있는 값 제거
+# 비슷한 boundary에 있는 값 제거 - non maximum suppression
 indices = cv.dnn.NMSBoxes(boxes, confidences, 0.5, 0.4)
 
 print(boxes)
 print(classIDs)
 print(confidences)
-
+print(indices)
 if len(indices) > 0:
     for i in indices.flatten():
+        print(i)
         (x, y) = (boxes[i][0], boxes[i][1])
         (w, h) = (boxes[i][2], boxes[i][3])
         color = [int(c) for c in colors[classIDs[i]]]
