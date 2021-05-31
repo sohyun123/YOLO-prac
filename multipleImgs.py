@@ -51,7 +51,7 @@ def load_image(path):
     # small objects (8112, 85)
     outputs = np.vstack(outputs)
 
-    post_process(img, outputs, 0.5)
+    post_process(img, outputs, 0.3)
     cv.imshow('window', img)
     cv.displayOverlay('window', f'forward propagation time={t:.3}')
     cv.waitKey(0)
