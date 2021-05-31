@@ -7,6 +7,8 @@ img = None
 img0 = None
 outputs = None
 
+objects = {}
+
 # Load names of classes and get random colors
 classes = open('coco.names').read().strip().split('\n')
 np.random.seed(42)
@@ -86,6 +88,14 @@ def post_process(img, outputs, conf):
             cv.rectangle(img, (x, y), (x + w, y + h), color, 2)
             text = "{}: {:.4f}".format(classes[classIDs[i]], confidences[i])
             cv.putText(img, text, (x, y - 5), cv.FONT_HERSHEY_SIMPLEX, 0.5, color, 1)
+
+            if classes[classIDs[i]] in objects:
+                objects[classes[classIDs[i]]] += 1
+            else:
+                objects[classes[classIDs[i]]] = 1
+
+
+    print(objects)
 
 
 def trackbar(x):
