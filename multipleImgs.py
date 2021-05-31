@@ -1,3 +1,5 @@
+import os
+
 import cv2 as cv
 import numpy as np
 import time
@@ -109,18 +111,16 @@ def trackbar(x):
 
 cv.namedWindow('window')
 cv.createTrackbar('confidence', 'window', 50, 100, trackbar)
-# load_image('images/horse.jpg')
-# load_image('images/traffic.jpg')
-# load_image('images/zoo.jpg')
+
 # load_image('images/kitchen.jpg')
 # load_image('images/airport.jpg')
-# load_image('images/tennis.jpg')
-# load_image('images/wine.jpg')
-# load_image('images/bicycle.jpg')
-load_image('images/kitchen.jpg')
-load_image('images/airport.jpg')
-load_image('images/pedestrian.png')
-load_image('images/planet-zoo.jpg')
-load_image('images/soccer.jpg')
+# load_image('images/pedestrian.png')
+# load_image('images/planet-zoo.jpg')
+# load_image('images/soccer.jpg')
+
+folder = 'images/capture'
+for filename in os.listdir(folder):
+    load_image(folder+'/'+filename)
+
 
 cv.destroyAllWindows()
